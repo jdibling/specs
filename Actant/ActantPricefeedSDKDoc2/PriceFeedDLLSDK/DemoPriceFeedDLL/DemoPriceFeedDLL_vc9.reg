@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\QT\Applications\AQTOR\Interfaces\DemoPriceFeedDLL]
+"Enabled"=dword:00000001
+"InterfaceName"="ExternalPFIIO"
+"ProgId"="ExternalPriceFeedIIO.ExternalPriceFeed"
+"dllName"="ExternalPriceFeedIIO.dll"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\QT\Applications\AQTOR\Interfaces\DemoPriceFeedDLL\Config]
+"PluginPriceFeedDLLName"="C:\\Program Files\\QT\\PriceFeedDLLSDK\\DemoPriceFeedDLL\\DemoPriceFeedDLL.vc9.dll"
+"PluginPriceFeedConfiguration"="Enter your DLL Configuration Here"
+"PriceFeed"="XUSA"
+"NBBOPriceFeed"="XUSA,XCBO"
+"SettlementPriceFeed"="XUSA,XCBO"

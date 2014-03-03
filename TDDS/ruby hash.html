@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Calling a method on a Ruby module - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="og:title" content="Calling a method on a Ruby module">
+    <meta name="og:description" content="I have the following Ruby code:
+
+module MyModule
+  class MyClass
+    def self.my_method
+    end
+  end
+end
+
+
+To call my_method, I enter MyModule::MyClass.my_method. I&#39;d like to write a wrapper for ">
+    <meta name="og:url" content="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module">
+    <link rel="canonical" href="./ruby hash_files/ruby hash.html">
+
+    
+    
+    <script async="" src="./ruby hash_files/quant.js"></script><script async="" src="./ruby hash_files/beacon.js"></script><script async="" src="./ruby hash_files/analytics.js"></script><script src="./ruby hash_files/jquery.min.js"></script>
+    <script src="./ruby hash_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./ruby hash_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Calling a method on a Ruby module&#39;" href="http://stackoverflow.com/feeds/question/1973596">
+    <script>
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({canOpenBounty:true,votesCast:[],canViewVoteCounts:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1973596});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '1973596');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.realtime.init('wss://qa.sockets.stackexchange.com,ws://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToInboxNotifications();
+                    StackExchange.realtime.subscribeToReputationNotifications('1');
+                            StackExchange.realtime.subscribeToTopBarNotifications('1');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1392405139,"styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"af4762c9dee2adf5bd61c16216c62347","isRegistered":true,"userType":3,"userId":241536,"accountId":86993,"gravatar":"<div><img src=\"https://www.gravatar.com/avatar/db916a1e4c13a45a22d50a2f9e4a86f8?s=32&d=identicon&r=PG\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"http://stackoverflow.com/users/241536/john-dibling","notificationsUnviewedCount":0,"inboxUnviewedCount":0,"ab":{"hot_questions_sidebar":{"v":"1_random_order","g":1},"question_show_tweaks":{"v":"sidebar_wo_tag_stats","g":2}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"e0bbd4760e83","js/moderator.en.js":"f24049d774be","js/full-anon.en.js":"0d8bf144dca2","js/full.en.js":"07def1e83957","js/wmd.en.js":"849f408083f3","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"3eb1042ba6b3","js/help.en.js":"d3cc74d8a93a","js/tageditor.en.js":"6d51a5f8d7f3","js/tageditornew.en.js":"5761dfb80bd0","js/inline-tag-editing.en.js":"f951bd09dc69","js/revisions.en.js":"33fd38144303","js/review.en.js":"44c8a0044283","js/tagsuggestions.en.js":"e4e7b952fcc7","js/post-validation.en.js":"c275fe37d674","js/explore-qlist.en.js":"73825bd006fc","js/events.en.js":"8323ff486895"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+        
+    </script>
+    
+<script async="" src="./ruby hash_files/full.en.js"></script><script async="" src="./ruby hash_files/inline-tag-editing.en.js"></script><script async="" src="./ruby hash_files/post-validation.en.js"></script><script async="" src="./ruby hash_files/prettify-full.en.js"></script><script async="" src="./ruby hash_files/wmd.en.js"></script><link href="./ruby hash_files/company.min.css" type="text/css" rel="stylesheet"><link href="./ruby hash_files/sidebar.min.css" type="text/css" rel="stylesheet"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+<div class="topbar">
+    <div class="topbar-wrapper">
+        
+        <div class="js-topbar-dialog-corral">
+
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackexchange.com/" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+                    <a href="http://stackoverflow.com/users/logout" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-gps-track="site.switch({ target_site:4, item_type:3 });site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    <span class="rep-score">1,909</span>
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link" href="http://careers.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Careers 2.0
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+
+
+        <div class="header">
+            <h3><a href="http://stackexchange.com/users/86993/?tab=accounts">your communities</a></h3>
+        </div>
+        <div class="modal-content">
+
+            <ul class="my-sites">
+                    <li>
+                            <a href="http://poker.stackexchange.com/" class="site-link js-gps-track" data-gps-track="site.switch({ target_site:379, item_type:3 });site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-poker" title="Poker"></div>
+        Poker
+    <span class="rep-score">741</span>
+    </a>
+
+                    </li>
+                    <li>
+                            <a href="http://codereview.stackexchange.com/" class="site-link js-gps-track" data-gps-track="site.switch({ target_site:196, item_type:3 });site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-codereview" title="Code Review"></div>
+        Code Review
+    <span class="rep-score">396</span>
+    </a>
+
+                    </li>
+                    <li>
+                            <a href="http://unix.stackexchange.com/" class="site-link js-gps-track" data-gps-track="site.switch({ target_site:106, item_type:3 });site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-unix" title="Unix &amp; Linux"></div>
+        Unix &amp; Linux
+    <span class="rep-score">366</span>
+    </a>
+
+                    </li>
+                    <li>
+                            <a href="http://programmers.stackexchange.com/" class="site-link js-gps-track" data-gps-track="site.switch({ target_site:131, item_type:3 });site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-programmers" title="Programmers"></div>
+        Programmers
+    <span class="rep-score">311</span>
+    </a>
+
+                    </li>
+            </ul>
+           
+        </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>        </div>
+
+        <div class="network-items">
+            
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 118 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+            
+                <a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+                    <span class="hidden-text">Inbox</span>
+                    <span class="unread-count" style="display:none"></span>
+                </a>
+                <a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+                    <span class="hidden-text">Reputation and Badges</span>
+                    <span class="unread-count" style="">+10</span>
+                </a>
+        </div>
+
+        <div class="topbar-links">
+            
+                <a href="http://stackoverflow.com/users/241536/john-dibling" class="profile-me">
+			        <div title="John Dibling"><img src="./ruby hash_files/db916a1e4c13a45a22d50a2f9e4a86f8" alt="" width="24" height="24" class="avatar-me js-avatar-me"></div>
+                    <div class="links-container topbar-flair">
+
+                        <span class="reputation" title="your reputation: 53,614" style="opacity: 1;">53,614</span>
+<span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="68 silver badges"><span class="badge2"></span><span class="badgecount">68</span></span><span title="169 bronze badges"><span class="badge3"></span><span class="badgecount">169</span></span>                    </div>
+			    </a>
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="http://stackoverflow.com/tools/flagged" class="topbar-icon icon-flag icon-tools-flag yes-hover" title="we have posts flagged for moderator attention, perhaps you can help">
+                                <span class="supernovabg unread-count">357</span>
+                            </a>
+                        
+
+                        
+                            <a href="http://stackoverflow.com/review" title="Review queues - help improve the site">
+                                review
+                            </a>
+
+    <a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                <li>
+                    <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                        Tour
+                        <span class="item-summary">
+                            Start here for a quick overview of the site
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+                        
+                    </span>
+                </div>
+
+			<div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+			</div>
+            	
+        </div>      
+    </div> 
+</div>
+<script>
+    StackExchange.ready(function () {
+        //topbar.init();
+        StackExchange.topbar.init();
+    });
+</script>    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs ">
+                    <ul>
+                            <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                            <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                            <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                            <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                            <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Article">
+	<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./ruby hash_files/ruby hash.html" class="question-hyperlink">Calling a method on a Ruby module</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="1973596" id="question">
+    
+        <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1973596">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span class="vote-count-post " title="View upvote and downvote totals" style="cursor: pointer;">4</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>1</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="description">
+
+        <p>I have the following Ruby code:</p>
+
+<pre class="lang-rb prettyprint prettyprinted" style=""><code><span class="kwd">module</span><span class="pln"> </span><span class="typ">MyModule</span><span class="pln">
+  </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MyClass</span><span class="pln">
+    </span><span class="kwd">def</span><span class="pln"> </span><span class="kwd">self</span><span class="pun">.</span><span class="pln">my_method
+    </span><span class="kwd">end</span><span class="pln">
+  </span><span class="kwd">end</span><span class="pln">
+</span><span class="kwd">end</span></code></pre>
+
+<p>To call <code>my_method</code>, I enter <code>MyModule::MyClass.my_method</code>. I'd like to write a wrapper for <code>my_method</code> on the module itself:</p>
+
+<pre class="lang-rb prettyprint prettyprinted" style=""><code><span class="typ">MyModule</span><span class="pun">.</span><span class="pln">my_method</span></code></pre>
+
+<p>Is this possible?</p>
+
+    </div>
+    <div class="post-taglist">
+        <span class="edit-tags-wrapper"><a href="http://stackoverflow.com/questions/tagged/ruby" class="post-tag js-gps-track" title="show questions tagged &#39;ruby&#39;" rel="tag">ruby</a><span class="dno"><a id="edit-tags" style="" title="edit only this question&#39;s tags">edit tags</a></span></span> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/1973596/241536" title="short permalink to this question" class="short-link" id="link-post-1973596">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1973596/edit" class="edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="close-question-link" title="vote to close this question (when closed, no new answers can be added)" data-questionid="1973596" data-isclosed="false">close</a><span class="lsep">|</span><a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="1973596">flag</a><span class="lsep">|</span><a id="protect-post-1973596" href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" title="disallow answers by anonymous and very new low rep users">protect</a></div>        
+
+<script>
+    StackExchange.using("inlineTagEditing", function () {
+        StackExchange.inlineTagEditing.init();
+    });
+</script>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2009-12-29 08:47:34Z" class="relativetime">Dec 29 '09 at 8:47</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/65925/gsmendoza"><div><img src="./ruby hash_files/2456250b860e130e613c57b7bad99542" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/65925/gsmendoza">gsmendoza</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">460</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="22 bronze badges"><span class="badge3"></span><span class="badgecount">22</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1973596" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="false">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+				    <tfoot>
+					    <tr>
+						    <td></td>
+						    <td class="comment-form">
+							    <form id="add-comment-1973596" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></form>
+						    </td>
+					    </tr>
+				    </tfoot>
+		    </table>
+	    </div>
+			<a id="comments-link-1973596" class="comments-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments." href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#">add comment</a>
+    </td>
+</tr>                  <tr class="bounty-notification">
+          <td class="votecell"></td>
+          <td>
+          <div style="margin-top:20px">
+            <a class="bounty-link bounty" title="offer some of your reputation for better answers">
+                start a bounty
+            </a>
+          </div>
+          </td>
+          </tr>
+    </tbody></table>    
+</div>
+
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								3 Answers
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="1973851"></a>
+<div id="answer-1973851" class="answer accepted-answer" data-answerid="1973851">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1973851">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post " title="View upvote and downvote totals" style="cursor: pointer;">4</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>Simple method:</p>
+
+<pre class="lang-rb prettyprint prettyprinted" style=""><code><span class="kwd">module</span><span class="pln"> </span><span class="typ">MyModule</span><span class="pln">
+  </span><span class="kwd">def</span><span class="pln"> </span><span class="kwd">self</span><span class="pun">.</span><span class="pln">my_method</span><span class="pun">(*</span><span class="pln">args</span><span class="pun">)</span><span class="pln">
+    </span><span class="typ">MyModule</span><span class="pun">::</span><span class="typ">MyClass</span><span class="pun">.</span><span class="pln">my_method</span><span class="pun">(*</span><span class="pln">args</span><span class="pun">)</span><span class="pln">
+  </span><span class="kwd">end</span><span class="pln">
+</span><span class="kwd">end</span></code></pre>
+
+<p>Harder method:</p>
+
+<p>Use metaprogramming to write a function for all cases (like attr_accessor).</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1973851/241536" title="short permalink to this answer" class="short-link" id="link-post-1973851">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1973851/edit" class="edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="1973851">flag</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-12-29 10:07:46Z" class="relativetime">Dec 29 '09 at 10:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/163365/robin"><div><img src="./ruby hash_files/f0eb20367d686327c63ecfe246597ddc" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/163365/robin">Robin</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">636</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1973851" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="false">
+
+    <tr id="comment-1893246" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="comment-score">
+                            
+                        </td>
+                        <td>
+                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                    <a class="comment-flag" title="flag this comment as unconstructive, offensive, or spam">flag</a>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+	<span class="comment-copy">Thanks. Funny how this didn't work for me yesterday. But it works now! :)</span>
+	–&nbsp;
+		<a href="http://stackoverflow.com/users/65925/gsmendoza" title="460 reputation" class="comment-user owner">gsmendoza</a>
+	<span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#comment1893246_1973851"><span title="2009-12-30 02:00:14Z" class="relativetime-clean">Dec 30 '09 at 2:00</span></a></span>
+				</div>
+
+        </td>
+    </tr>
+    <tr id="comment-1893263" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="comment-score">
+                            
+                        </td>
+                        <td>
+                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                    <a class="comment-flag" title="flag this comment as unconstructive, offensive, or spam">flag</a>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+	<span class="comment-copy">I think I know now why it didn't work before: I had the MyModule.my_method declaration in one file (my_module.rb) and the MyModule::MyClass.my_method in another file (my_class.rb). When I put the above method inside my_class.rb, MyModule.my_method worked!</span>
+	–&nbsp;
+		<a href="http://stackoverflow.com/users/65925/gsmendoza" title="460 reputation" class="comment-user owner">gsmendoza</a>
+	<span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#comment1893263_1973851"><span title="2009-12-30 02:05:48Z" class="relativetime-clean">Dec 30 '09 at 2:05</span></a></span>
+				</div>
+
+        </td>
+    </tr>
+    <tr id="comment-12210564" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="comment-score">
+                            
+                        </td>
+                        <td>
+                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                    <a class="comment-flag" title="flag this comment as unconstructive, offensive, or spam">flag</a>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+	<span class="comment-copy">Easier way: require 'forwardable'.</span>
+	–&nbsp;
+		<a href="http://stackoverflow.com/users/893177/mon-ouie" title="518 reputation" class="comment-user">Mon ouïe</a>
+	<span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#comment12210564_1973851"><span title="2012-03-08 17:40:31Z" class="relativetime-clean">Mar 8 '12 at 17:40</span></a></span>
+				</div>
+
+        </td>
+    </tr>
+			    </tbody>
+				    <tfoot>
+					    <tr>
+						    <td></td>
+						    <td class="comment-form">
+							    <form id="add-comment-1973851" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></form>
+						    </td>
+					    </tr>
+				    </tfoot>
+		    </table>
+	    </div>
+			<a id="comments-link-1973851" class="comments-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="1974891"></a>
+<div id="answer-1974891" class="answer" data-answerid="1974891">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1974891">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post " title="View upvote and downvote totals" style="cursor: pointer;">6</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>I'm not sure what you're trying to achieve, but: if you make it a regular method and modify it with module_function, you will be able to call it any way you choose:</p>
+
+<pre class="lang-rb prettyprint prettyprinted" style=""><code><span class="com">#!/usr/bin/ruby1.8</span><span class="pln">
+
+</span><span class="kwd">module</span><span class="pln"> </span><span class="typ">MyModule</span><span class="pln">
+
+  </span><span class="kwd">def</span><span class="pln"> my_method
+    p </span><span class="str">"my method"</span><span class="pln">
+  </span><span class="kwd">end</span><span class="pln">
+  module_function </span><span class="pun">:</span><span class="pln">my_method
+
+</span><span class="kwd">end</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MyClass</span><span class="pln">
+
+  include </span><span class="typ">MyModule</span><span class="pln">
+
+  </span><span class="kwd">def</span><span class="pln"> foo
+    my_method
+  </span><span class="kwd">end</span><span class="pln">
+
+</span><span class="kwd">end</span><span class="pln">
+
+</span><span class="typ">MyClass</span><span class="pun">.</span><span class="pln">new</span><span class="pun">.</span><span class="pln">foo      </span><span class="com"># =&gt; "my method"</span><span class="pln">
+</span><span class="typ">MyModule</span><span class="pun">.</span><span class="pln">my_method   </span><span class="com"># =&gt; "my method"</span></code></pre>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1974891/241536" title="short permalink to this answer" class="short-link" id="link-post-1974891">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1974891/edit" class="edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="1974891">flag</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-12-29 14:30:37Z" class="relativetime">Dec 29 '09 at 14:30</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/238886/wayne-conrad"><div><img src="./ruby hash_files/8ca29123b5669b26f9b6ca2c62d9d215" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/238886/wayne-conrad">Wayne Conrad</a><br>
+        <span class="reputation-score" title="reputation score 27975" dir="ltr">28k</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="65 silver badges"><span class="badge2"></span><span class="badgecount">65</span></span><span title="97 bronze badges"><span class="badge3"></span><span class="badgecount">97</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1974891" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="false">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+				    <tfoot>
+					    <tr>
+						    <td></td>
+						    <td class="comment-form">
+							    <form id="add-comment-1974891" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></form>
+						    </td>
+					    </tr>
+				    </tfoot>
+		    </table>
+	    </div>
+			<a id="comments-link-1974891" class="comments-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+
+  
+<a name="1973801"></a>
+<div id="answer-1973801" class="answer" data-answerid="1973801">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1973801">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post " title="View upvote and downvote totals" style="cursor: pointer;">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>You can define the method directly inside the module.</p>
+
+<pre class="lang-rb prettyprint prettyprinted" style=""><code><span class="kwd">module</span><span class="pln"> </span><span class="typ">MyModule</span><span class="pln">
+  </span><span class="kwd">def</span><span class="pln"> </span><span class="kwd">self</span><span class="pun">.</span><span class="pln">my_method
+    puts </span><span class="str">"Hi I am #{self}"</span><span class="pln">
+  </span><span class="kwd">end</span><span class="pln">
+</span><span class="kwd">end</span><span class="pln">
+
+</span><span class="typ">MyModule</span><span class="pun">.</span><span class="pln">my_method  </span><span class="com">#=&gt; Hi I am MyModule</span></code></pre>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1973801/241536" title="short permalink to this answer" class="short-link" id="link-post-1973801">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1973801/edit" class="edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="1973801">flag</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-12-29 09:55:14Z" class="relativetime">Dec 29 '09 at 9:55</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/17674/anshul"><div><img src="./ruby hash_files/a5cd1e29b9f3d82d9b7bbb707afb71cc" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/17674/anshul">anshul</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,811</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="20 bronze badges"><span class="badge3"></span><span class="badgecount">20</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1973801" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="false">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+				    <tfoot>
+					    <tr>
+						    <td></td>
+						    <td class="comment-form">
+							    <form id="add-comment-1973801" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></form>
+						    </td>
+					    </tr>
+				    </tfoot>
+		    </table>
+	    </div>
+			<a id="comments-link-1973801" class="comments-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#">add comment</a>
+    </td>
+</tr>
+    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/1973596/answer/submit" method="post" class="post-form">
+							<input type="hidden" id="post-id" value="1973596">
+							<h2 class="space">Your Answer</h2>
+
+
+
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+         
+        prepareEditor({
+            heartbeatType: 'answer',
+            bindNavPrevention: true,
+            postfix: "",
+            onDemand: false,
+            discardSelector: ".discard-answer"
+            
+        });
+        
+
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O" style="left: 200px;"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U" style="left: 225px;"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" style="left: 250px;"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R" style="left: 275px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Shift+Z" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button wmd-help-button" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: 0px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+    <div class="community-option">
+        <input id="communitymode" name="communitymode" type="checkbox">
+        <label for="communitymode" title="Marking an answer community wiki encourages others to edit it by lowering the reputation barrier required to edit. However, you will not gain any upvote reputation from it. This cannot be undone.">community wiki</label>
+    </div>
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="af4762c9dee2adf5bd61c16216c62347">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="discard-answer dno">discard</a>
+								</div>
+						</form>
+
+					<script>
+						StackExchange.using("inlineEditing", function () {
+							StackExchange.inlineEditing.init();
+						});
+					</script>
+
+
+						<h2 class="bottom-notice">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/ruby" class="post-tag" title="show questions tagged &#39;ruby&#39;" rel="tag">ruby</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-12-29 08:47:34Z"><b>4 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>2231 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module?lastactivity" class="lastactivity-link" title="2009-12-29 14:30:37Z">4 years ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <h4>Community Bulletin</h4>
+    <div class="related">
+            <div class="spacer"> 
+                <div class="bulletin-item-type event-date">event</div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/220314/2014-moderator-election-qa-question-collection?cb=1" class="question-hyperlink" target="_blank">Propose questions for the moderator candidates</a>
+                        <span class="event-date" style="white-space: nowrap;">– ends <span title="2014-02-17 20:00:00Z" class="relativetime">in 3 days</span></span>
+                </div>
+                <br class="cbt">
+            </div>
+            <div class="spacer bulletin-item-important"> 
+                <div class="bulletin-item-type event-date">event</div>
+                <div class="bulletin-item-content">
+                    <a href="http://stackoverflow.com/election?cb=1" class="question-hyperlink" target="_blank">2014 Community Moderator Election</a>
+                        <span class="event-date" style="white-space: nowrap;">– ends <span title="2014-02-25 20:00:00Z">Feb 25</span></span>
+                </div>
+                <br class="cbt">
+            </div>
+
+            <div class="spacer">
+                <div class="bulletin-item-type"><a href="http://blog.stackoverflow.com/?cb=1" class="event-date" target="_blank">blog</a></div>
+                <div class="bulletin-item-content">
+                    <a href="http://blog.stackoverflow.com/2014/02/cant-we-all-be-reasonable-and-speak-english/?cb=1" class="question-hyperlink" target="_blank">Can’t We All be Reasonable and Speak English?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    </div>
+</div>			
+			<div class="everyonelovesstackoverflow" id="careers2">
+        </div>
+    <div id="hireme"> <a href="http://careers.stackoverflow.com/jobs?a=288" class="top" target="_blank"></a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/48281/database-administrator-and-developer-arroweye-solutions-inc?a=WSNHNLfq" target="_blank" title="Database Administrator and Developer at Arroweye Solutions. Click to learn more."> Database Administrator and Developer<br> <span class="company">Arroweye Solutions</span> <span class="location">Chicago, IL</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/48736/lead-software-engineer-enova?a=XrcOugMM" target="_blank" title="Lead Software Engineer at Enova. Click to learn more."> Lead Software Engineer<br> <span class="company">Enova</span> <span class="location">Chicago, IL</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/44534/back-end-test-engineer-morningstar-inc?a=Sjtd8t7G" target="_blank" title="Back-End Test Engineer at Morningstar. Click to learn more."> Back-End Test Engineer<br> <span class="company">Morningstar</span> <span class="location">Chicago, IL / relocation</span> </a> </li> <li class="city"><a href="http://careers.stackoverflow.com/jobs/location/palatine%2c%20il%2c%20united%20states?a=x200">More jobs near Palatine...</a></li> </ul> <img alt="" class="impression" src="./ruby hash_files/WSNHNLfq-XrcOugMM-Sjtd8t7G-288-x200" style="display:none"></div>
+			  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/1243285?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">6
+    </div>
+</a><a href="http://stackoverflow.com/questions/1243285/calling-parent-module-methods-from-a-nested-class?rq=1" class="question-hyperlink">Calling parent module methods from a nested class</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/3357712?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">10
+    </div>
+</a><a href="http://stackoverflow.com/questions/3357712/static-methods-in-ruby-modules?rq=1" class="question-hyperlink">Static methods in ruby modules?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/5513558?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">8
+    </div>
+</a><a href="http://stackoverflow.com/questions/5513558/executing-code-for-every-method-call-in-a-ruby-module?rq=1" class="question-hyperlink">Executing code for every method call in a Ruby module</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/6876480?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/6876480/ruby-raise-error-in-module-if-class-method-not-found?rq=1" class="question-hyperlink">Ruby: Raise error in Module if class method not found</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/7137238?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/7137238/how-can-i-intercept-method-call-in-ruby?rq=1" class="question-hyperlink">How can I intercept method call in ruby?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/8696370?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/8696370/ruby-method-calling-hierarchy?rq=1" class="question-hyperlink">Ruby method-calling hierarchy</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/9013727?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/9013727/cant-include-ruby-modules-correctly?rq=1" class="question-hyperlink">Can't include ruby modules correctly</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/10216418?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/10216418/accessing-other-methods-in-a-ruby-module?rq=1" class="question-hyperlink">Accessing other methods in a Ruby module</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12265959?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/12265959/accessing-methods-in-ruby-module?rq=1" class="question-hyperlink">Accessing Methods in Ruby Module</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/13546927?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/13546927/ruby-how-to-call-an-instance-method-of-a-class-from-a-module?rq=1" class="question-hyperlink">Ruby: How to call an instance method of a Class from a Module?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/675522/whats-the-logic-behind-pythagorass-theorem" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the logic behind Pythagoras's theorem?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/21781096/ternary-operator-behaviour-inconsistency" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Ternary operator behaviour inconsistency
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/152033/what-does-infinitesimally-small-mean" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does 'infinitesimally small' mean?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/20654/execute-prints-backwards" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Execute prints backwards
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/19290/is-it-ok-to-use-emoticons-in-cover-letters" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it ok to use emoticons in cover letters?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/160427/percent-sign-in-a-box" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Percent sign in a box
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/21778406/why-is-the-result-of-adding-two-null-strings-not-null" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is the result of adding two null strings not null?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/712551/how-are-pseudorandom-and-truly-random-numbers-different-and-why-does-it-matter" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How are pseudorandom and truly random numbers different and why does it matter?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/42286/minimum-in-a-nested-list" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Minimum in a nested list
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/20823/its-a-rainy-day" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    It's a rainy day
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-boardgames" title="Board &amp; Card Games Stack Exchange"></div><a href="http://boardgames.stackexchange.com/questions/14621/can-welding-jar-target-itself" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:147 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can Welding Jar target itself?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/28240/pros-cons-in-hungary-of-investing-retirement-savings-exclusively-in-silver-wh" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pros &amp; cons in Hungary of investing retirement savings exclusively in silver? What better alternatives, given my concerns?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/575656/what-tool-can-i-use-to-manage-the-configuration-of-my-windows-server-environment" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What tool can I use to manage the configuration of my Windows Server environments
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/158668/nice-scientific-pictures-show-off" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Nice scientific pictures show off
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/16898/how-to-sign-your-email-to-students-so-to-avoid-their-immature-behavior" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to sign your email to students, so to avoid their immature behavior?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/115222/possible-to-find-out-the-sizes-of-data-types-int-float-double-on-a-syst" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Possible to find out the sizes of data types (int, float, double, ...) on a system, without writing a C program?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/21692646/how-does-facebook-disable-browsers-integrated-developer-tools" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does Facebook disable browser's integrated Developer Tools?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/152042/jane-austen-use-of-triple-negative-in-pride-prejudice-chapter-28" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Jane Austen use of triple negative in Pride &amp; Prejudice (Chapter 28)
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/21781436/why-is-this-private-member-accessible" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is this private member accessible?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/16960/how-do-i-read-the-room-and-adjust-my-pace-while-lecturing" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I 'read the room' and adjust my pace while lecturing?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/160466/how-can-one-refer-to-a-part-of-an-equation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can one refer to a part of an equation?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/41610/is-it-a-good-practice-to-put-exceptions-in-every-method" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it a good practice to put exceptions in every method?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/99140/if-the-quarks-in-a-neutron-are-up-down-down-why-isnt-it-negatively-charged" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    If the quarks in a neutron are (up,down,down), why isn't it negatively charged?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/11471/whats-a-good-way-to-cut-bread-into-tiny-pieces" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's a good way to cut bread into tiny pieces?
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="http://stackoverflow.com/questions/1973596/calling-a-method-on-a-ruby-module#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+        <script>
+            StackExchange.ready(function () {
+                var $div = $('#hot-network-questions'),
+                    $more = $div.find('.js-show-more'),
+                    $hidden = $div.find('.js-hidden');
+
+                $more.click(function () {
+                    $hidden.show();
+                    $more.remove();
+                    return false;
+                });
+
+                // if the sidebar is shorter than the main content, show more hot questions 
+                var mHeight = $('#mainbar').height(),
+                    sHeight = $('#sidebar').height() + 550;
+
+                if (mHeight > sHeight) {
+                    $hidden.each(function() {
+                        sHeight += $(this).show().height();
+                        return mHeight > sHeight;
+                    });
+
+                    if ($hidden.filter(':hidden').length == 0) {
+                        $more.remove();
+                    }
+                }
+            
+            });
+        </script>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/1973596" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/1973596/ivc/ee2d');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/1973596/ivc/ee2d" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-rb</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/about">about</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackexchange.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/about/hiring">jobs</a>
+                    <a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MjAsImNtIjo5NTQsImNoIjoxMTc4LCJjciI6Mjc3NiwiZG0iOjQsImZjIjoyODYyLCJmbCI6Mjc1MSwibnciOjIyLCJydiI6MCwicHIiOjExNSwic3QiOjAsInVyIjoiaHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL2Fib3V0L2NvbnRhY3QiLCJyZSI6MX0&s=hRods5B22XvRBwWIwtIMekcyNF8">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Answers</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (14)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackoverflow.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Overflow</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.2.14.1372
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        ga('set', 'dimension1', '86993');         
+        ga('set', 'dimension2', '|ruby|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>            
+    
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
