@@ -1,0 +1,3 @@
+http://natsys-lab.blogspot.ru/2013/11/studying-intel-tsx-performance.html
+https://groups.google.com/forum/?fromgroups#!forum/lock-free
+
