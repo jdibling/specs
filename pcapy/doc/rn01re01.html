@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title></title><meta name="generator" content="DocBook XSL Stylesheets V1.40"><meta name="keywords" content="pcap, packet, capture, python"><link rel="home" href="pt01.html" title="Part I. Pcapy Reference"><link rel="up" href="rn01.html" title="Pcapy Module Reference"><link rel="previous" href="rn01.html" title="Pcapy Module Reference"><link rel="next" href="rn01re02.html" title=""></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"></th></tr><tr><td width="20%" align="left"><a href="rn01.html">Prev</a> </td><th width="60%" align="center">Pcapy Module Reference</th><td width="20%" align="right"> <a href="rn01re02.html">Next</a></td></tr></table><hr></div><div class="refentry"><h1 class="title"><a name="id2739079"></a>open_live</h1><div class="refnamediv"><a name="id2739082"></a><h2>Name</h2>open_live &#8212; Obtain a packet capture descriptor to look at packets on the network</div><div class="refsynopsisdiv"><a name="id2739097"></a><h2>Synopsis</h2><div class="funcsynopsis" id="id2739100"><a name="id2739100"></a><p><code><code class="funcdef">Reader <b class="fsfunc">open_live</b></code>(<var class="pdparam">device</var>, <var class="pdparam">snaplen</var>, <var class="pdparam">promisc</var>, <var class="pdparam">to_ms</var>);<br>string <var class="pdparam">device</var>;<br>int <var class="pdparam">snaplen</var>;<br>int <var class="pdparam">promisc</var>;<br>int <var class="pdparam">to_ms</var>;</code></p></div></div><div class="refsect1"><a name="id2796643"></a><h2><a name="id2796643"></a>DESCRIPTION</h2><p>
+	  <tt>open_live</tt> is used to obtain a packet
+	  capture descriptor to look at packets on the network.
+	  <i><tt>device</tt></i> is a string that specifies the
+	  network device to open; on Linux systems with 2.2 or later
+	  kernels, a device argument of <tt>any</tt> or
+	  <tt>NULL</tt> can be used to capture packets
+	  from all interfaces. <i><tt>snaplen</tt></i>
+	  specifies the maximum number of bytes to capture.
+	  <i><tt>promisc</tt></i> specifies if the interface is
+	  to be put into promiscuous mode. (Note that even if this
+	  parameter is false, the interface could well be in
+	  promiscuous mode for some other reason.) For now, this
+	  doesn't work on the <tt>any</tt> device; if an
+	  argument of <tt>any</tt> or
+	  <tt>NULL</tt> is supplied, the
+	  <i><tt>promisc</tt></i> flag is ignored.
+	  <i><tt>to_ms</tt></i> specifies the read timeout in
+	  milliseconds. The read timeout is used to arrange that the
+	  read not necessarily return immediately when a packet is
+	  seen, but that it wait for some amount of time to allow more
+	  packets to arrive and to read multiple packets from the OS
+	  kernel in one operation. Not all platforms support a read
+	  timeout; on platforms that don't, the read timeout is
+	  ignored.
+	</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a href="rn01.html">Prev</a> </td><td width="20%" align="center"><a href="pt01.html">Home</a></td><td width="40%" align="right"> <a href="rn01re02.html">Next</a></td></tr><tr><td width="40%" align="left">Pcapy Module Reference </td><td width="20%" align="center"><a href="rn01.html">Up</a></td><td width="40%" align="right"> </td></tr></table></div></body></html>

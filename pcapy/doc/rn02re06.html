@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title></title><meta name="generator" content="DocBook XSL Stylesheets V1.40"><meta name="keywords" content="pcap, packet, capture, python"><link rel="home" href="pt01.html" title="Part I. Pcapy Reference"><link rel="up" href="rn02.html" title="Reader Object Reference"><link rel="previous" href="rn02.html" title="Reader Object Reference"><link rel="next" href="rn02re07.html" title=""></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"></th></tr><tr><td width="20%" align="left"><a href="rn02.html">Prev</a> </td><th width="60%" align="center">Reader Object Reference</th><td width="20%" align="right"> <a href="rn02re07.html">Next</a></td></tr></table><hr></div><div class="refentry"><h1 class="title"><a name="id2736643"></a>dispatch</h1><div class="refnamediv"><a name="id2736646"></a><h2>Name</h2>dispatch, loop &#8212; Collect and process packets</div><div class="refsynopsisdiv"><a name="id2736663"></a><h2>Synopsis</h2><div class="funcsynopsis" id="id2736667"><a name="id2736667"></a><p><code><code class="funcdef">int <b class="fsfunc">dispatch</b></code>(<var class="pdparam">maxcant</var>, <var class="pdparam">(* callback)</var>);<br>int <var class="pdparam">maxcant</var>;<br>void <var class="pdparam">(* callback)</var>
+	      (Pkthdr, string);</code></p><p><code><code class="funcdef">int <b class="fsfunc">loop</b></code>(<var class="pdparam">maxcant</var>, <var class="pdparam">(* callback)</var>);<br>int <var class="pdparam">maxcant</var>;<br>void <var class="pdparam">(* callback)</var>
+	      (Pkthdr, string);</code></p></div></div><div class="refsect1"><a name="id2736749"></a><h2><a name="id2736749"></a>DESCRIPTION</h2><p>
+	  <tt>dispatch</tt> is used to collect and process
+	  packets. <i><tt>maxcant</tt></i> specifies the
+	  maximum number of packets to process before returning. This
+	  is not a minimum number; when reading a live capture, only
+	  one bufferful of packets is read at a time, so fewer than
+	  <i><tt>maxcant</tt></i> packets may be processed. A
+	  <i><tt>cnt</tt></i> of <tt>-1</tt>
+	  processes all the packets received in one buffer when
+	  reading a live capture, or all the packets in the file when
+	  reading a <i>savefile</i>. <i><tt>callback</tt></i>
+	  specifies a routine to be called with two arguments: a
+	  <tt>Pkthdr</tt> instance describing the data
+	  passed and the data itself.
+	</p><p>
+	  The number of packets read is returned.
+	  0 is returned if no packets were
+	  read from a live capture (if, for example, they were
+	  discarded because they didn't pass the packet filter, or if,
+	  on platforms that support a read timeout that starts before
+	  any packets arrive, the timeout expires before any  packets
+	  arrive, or if the file descriptor for the capture device is
+	  in non&#8211;blocking mode and no packets were available to be
+	  read) or if no more packets are available in a <i>savefile</i>.
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title"><a name="id2739866"></a>Note</h3><p>
+	    When reading a live capture, <tt>dispatch</tt>
+	    will not necessarily return when the read times out; on
+	    some platforms, the read timeout isn't supported, and, on
+	    other platforms, the timer doesn't start until at least
+	    one packet arrives. This means that the read timeout
+	    should <i>not</i> be used in, for example,
+	    an interactive application, to allow the packet capture
+	    loop to poll for user input periodically, as there's no
+	    guarantee that <tt>dispatch</tt> will return
+	    after the timeout expires.
+	  </p></div><p>
+	  <tt>loop</tt> is similar to
+	  <tt>dispatch</tt> except it keeps reading
+	  packets until <i><tt>maxcant</tt></i> packets are
+	  processed or an error occurs. It does
+	  <i>not</i> return when live read timeouts
+	  occur. Rather, specifying a non&#8211;zero read timeout to
+	  <tt>open_live</tt> and then calling
+	  <tt>dispatch</tt> allows the reception and
+	  processing of any packets that arrive when the timeout
+	  occurs. A negative <i><tt>maxcant</tt></i> causes
+	  <tt>loop</tt> to loop forever (or at least until
+	  an error occurs). 0 is returned
+	  if <i><tt>maxcant</tt></i> is exhausted.
+	</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a href="rn02.html">Prev</a> </td><td width="20%" align="center"><a href="pt01.html">Home</a></td><td width="40%" align="right"> <a href="rn02re07.html">Next</a></td></tr><tr><td width="40%" align="left">Reader Object Reference </td><td width="20%" align="center"><a href="rn02.html">Up</a></td><td width="40%" align="right"> </td></tr></table></div></body></html>
