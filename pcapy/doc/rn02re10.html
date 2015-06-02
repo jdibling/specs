@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title></title><meta name="generator" content="DocBook XSL Stylesheets V1.40"><meta name="keywords" content="pcap, packet, capture, python"><link rel="home" href="pt01.html" title="Part I. Pcapy Reference"><link rel="up" href="rn02.html" title="Reader Object Reference"><link rel="previous" href="rn02re09.html" title=""><link rel="next" href="rn02re11.html" title=""></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"></th></tr><tr><td width="20%" align="left"><a href="rn02re09.html">Prev</a> </td><th width="60%" align="center">Reader Object Reference</th><td width="20%" align="right"> <a href="rn02re11.html">Next</a></td></tr></table><hr></div><div class="refentry"><h1 class="title"><a name="id2740126"></a>datalink</h1><div class="refnamediv"><a name="id2740130"></a><h2>Name</h2>datalink &#8212; Obtain the link layer type</div><div class="refsynopsisdiv"><a name="id2740142"></a><h2>Synopsis</h2><div class="funcsynopsis" id="id2740145"><a name="id2740145"></a><p><code><code class="funcdef">int <b class="fsfunc">datalink</b></code>();</code></p></div></div><div class="refsect1"><a name="id2740168"></a><h2><a name="id2740168"></a>DESCRIPTION</h2><p>
+	  <tt>datalink</tt> returns the link layer type; link layer types it can return include:
+	  <div class="variablelist"><dl><dt><a name="id2740189"></a><span class="term"><tt>DLT_NULL</tt></span></dt><dd><p>
+		  BSD loopback encapsulation; the
+		  link layer header is a 4&#8211;byte field, in host
+		  byte order, containing a <tt>PF_</tt>
+		  value from <tt>socket.h</tt> for the
+		  network&#8211;layer protocol of the packet.
+		</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title"><a name="id2740228"></a>Note</h3><p>
+		    &#8220;host byte order&#8221; is the byte order
+		    of the machine on which the packets are captured,
+		    and the <tt>PF_</tt> values are for
+		    the OS of the machine on which
+		    the packets are captured; if a live capture is
+		    being done, &#8220;host byte order&#8221; is the
+		    byte order of the machine capturing the packets,
+		    and the <tt>PF_</tt> values are those
+		    of the OS of the machine
+		    capturing the packets, but if a <i>savefile</i> is being
+		    read, the byte order and <tt>PF_</tt>
+		    values are <i>not</i> necessarily
+		    those of the machine reading the capture file.
+		  </p></div></dd><dt><a name="id2740284"></a><span class="term"><tt>DLT_EN10MB</tt></span></dt><dd><p>Ethernet (10Mb, 100Mb, 1000Mb, and up)</p></dd><dt><a name="id2740302"></a><span class="term"><tt>DLT_IEEE802</tt></span></dt><dd><p>IEEE 802.5 Token Ring</p></dd><dt><a name="id2740323"></a><span class="term"><tt>DLT_ARCNET</tt></span></dt><dd><p>ARCNET</p></dd><dt><a name="id2740342"></a><span class="term"><tt>DLT_SLIP</tt></span></dt><dd><p><a name="id2733574"></a>
+		  SLIP; the link layer header contains, in order:
+		  <div class="itemizedlist"><ul><li><a name="id2733588"></a><p>
+			a 1&#8211;byte flag, which is
+			<tt>0</tt> for packets received by
+			the machine and <tt>1</tt> for
+			packets sent by the machine.
+		      </p></li><li><p><a name="id2733614"></a>
+			a 1&#8211;byte field, the upper 4 bits of which indicate the type of packet, as per RFC 1144:
+
+			<div class="itemizedlist"><ul><li><a name="id2733629"></a><p>
+			      <tt>0x40</tt>; an unmodified
+			      IP datagram
+			      (<tt>TYPE_IP</tt>)
+			    </p></li><li><a name="id2733652"></a><p>
+			      <tt>0x70</tt>; an
+			      uncompressed&#8211;TCP/IP
+			      datagram
+			      (<tt>UNCOMPRESSED_TCP</tt>),
+			      with that byte being the first byte of
+			      the raw IP header on
+			      the wire, containing the connection
+			      number in the protocol field
+			    </p></li><li><a name="id2733683"></a><p>
+			      <tt>0x80</tt>; a
+			      compressed&#8211;TCP/IP
+			      datagram
+			      (<tt>COMPRESSED_TCP</tt>),
+			      with that byte being the first byte of
+			      the compressed TCP/IP
+			      datagram header
+			    </p></li></ul></div>
+		      </p></li><li><a name="id2733717"></a><p>
+			for <tt>UNCOMPRESSED_TCP</tt>, the
+			rest of the modified IP
+			header, and for
+			<tt>COMPRESSED_TCP</tt>, the
+			compressed TCP/IP datagram
+			header
+		      </p></li></ul></div>
+		  for a total of 16 bytes; the uncompressed IP datagram follows the header.
+		</p></dd><dt><a name="id2733753"></a><span class="term"><tt>DLT_PPP</tt></span></dt><dd><p>
+		  PPP; if the first 2 bytes are
+		  <tt>0xff</tt> and <tt>0x03</tt>,
+		  it's PPP in
+		  HDLC&#8211;like framing, with the
+		  PPP header following those two
+		  bytes, otherwise it's PPP without
+		  framing, and the packet begins with the
+		  PPP header.
+		</p></dd><dt><a name="id2733812"></a><span class="term"><tt>DLT_FDDI</tt></span></dt><dd><p>FDDI</p></dd><dt><a name="id2733830"></a><span class="term"><tt>DLT_ATM_RFC1483</tt></span></dt><dd><p>
+		  RFC 1483
+		  LLC/SNAP&#8211;encapsulated
+		  ATM; the packet begins with an
+		  IEEE 802.2 LLC
+		  header.
+		</p></dd><dt><a name="id2733868"></a><span class="term"><tt>DLT_RAW</tt></span></dt><dd><p>
+		  Raw IP; the packet begins with an
+		  IP header.
+		</p></dd><dt><a name="id2733894"></a><span class="term"><tt>DLT_PPP_SERIAL</tt></span></dt><dd><p>
+		  PPP in
+		  HDLC&#8211;like framing, as per
+		  RFC 1662, or Cisco
+		  PPP with HDLC
+		  framing, as per section §4.3.1 of
+		  RFC 1547; the first byte will be
+		  <tt>0xFF</tt> for PPP
+		  in HDLC&#8211;like framing, and
+		  will be <tt>0x0F</tt> or
+		  <tt>0x8F</tt> for Cisco
+		  PPP with HDLC
+		  framing.
+		</p></dd><dt><a name="id2734071"></a><span class="term"><tt>DLT_PPP_ETHER</tt></span></dt><dd><p>
+		  PPPoE; the packet begins with a
+		  PPPoE header, as per
+		  RFC 2516.
+		</p></dd><dt><a name="id2734101"></a><span class="term"><tt>DLT_C_HDLC</tt></span></dt><dd><p>
+		  Cisco PPP with
+		  HDLC framing, as per section
+		  § 4.3.1 of RFC 1547.
+		</p></dd><dt><a name="id2733937"></a><span class="term"><tt>DLT_IEEE802_11</tt></span></dt><dd><p>
+		  IEEE 802.11 wireless
+		  LAN.
+		</p></dd><dt><a name="id2733963"></a><span class="term"><tt>DLT_LOOP</tt></span></dt><dd><p>
+		  OpenBSD loopback encapsulation; the link layer
+		  header is a 4&#8211;byte field, in network byte
+		  order, containing a <tt>PF_</tt> value
+		  from OpenBSD's <tt>socket.h</tt> for the
+		  network&#8211;layer protocol of the packet.
+		</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title"><a name="id2734141"></a>Note</h3><p>
+		    Note that, if a <i>savefile</i> is being read, those
+		    <tt>PF_</tt> values are
+		    <i>not</i> necessarily those of the
+		    machine reading the capture file.
+		  </p></div></dd><dt><a name="id2734165"></a><span class="term"><tt>DLT_LINUX_SLL</tt></span></dt><dd><p><a name="id2734173"></a>
+		  Linux cooked capture encapsulation; the link layer
+		  header contains, in order:
+
+		  <div class="itemizedlist"><ul><li><p><a name="id2734184"></a>
+			a 2&#8211;byte &quot;packet  type&quot;,  in  network
+			byte order, which is one of:
+
+			<div class="itemizedlist"><ul><li><a name="id2734195"></a><p>
+			      <tt>0</tt>; packet was sent to
+			      us by somebody else.
+			    </p></li><li><a name="id2734212"></a><p>
+			      <tt>1</tt>; packet was
+			      broadcast by somebody else.
+			    </p></li><li><a name="id2734228"></a><p>
+			      <tt>2</tt>; packet was
+			      multicast, but not broadcast, by
+			      somebody else.
+			    </p></li><li><a name="id2734245"></a><p>
+			      <tt>3</tt>; packet was sent by
+			      somebody else to somebody else.
+			    </p></li><li><a name="id2734261"></a><p>
+			      <tt>4</tt>; packet was sent by
+			      us.
+			    </p></li></ul></div>
+		      </p></li><li><a name="id2734280"></a><p>
+			a 2&#8211;byte field, in network byte order,
+			containing a Linux
+			<tt>ARPHRD_</tt> value for the
+			link layer device type.
+		      </p></li><li><a name="id2734295"></a><p>
+			a 2&#8211;byte field, in network byte order,
+			containing the length of the link layer
+			address of the sender of the packet (which
+			could be 0).
+		      </p></li><li><a name="id2734307"></a><p>
+			an 8&#8211;byte field containing that number
+			of bytes of the link layer header (if there
+			are more than 8 bytes, only the first 8 are
+			present).
+		      </p></li><li><a name="id2734319"></a><p>
+			a 2&#8211;byte field containing an Ethernet
+			protocol type, in network byte order, or
+			containing <tt>1</tt> for Novell
+			802.3 frames without an 802.2
+			LLC header or
+			<tt>4</tt> for frames beginning with
+			an 802.2 LLC header.
+		      </p></li></ul></div>
+		</p></dd><dt><a name="id2734355"></a><span class="term"><tt>DLT_LTALK</tt></span></dt><dd><p>
+		  Apple LocalTalk; the packet begins with an AppleTalk
+		  LLAP header.
+		</p></dd></dl></div>
+	</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a href="rn02re09.html">Prev</a> </td><td width="20%" align="center"><a href="pt01.html">Home</a></td><td width="40%" align="right"> <a href="rn02re11.html">Next</a></td></tr><tr><td width="40%" align="left"> </td><td width="20%" align="center"><a href="rn02.html">Up</a></td><td width="40%" align="right"> </td></tr></table></div></body></html>

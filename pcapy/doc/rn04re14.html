@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><title></title><meta name="generator" content="DocBook XSL Stylesheets V1.40"><meta name="keywords" content="pcap, packet, capture, python"><link rel="home" href="pt01.html" title="Part I. Pcapy Reference"><link rel="up" href="rn04.html" title="Pkthdr Object Reference"><link rel="previous" href="rn04.html" title="Pkthdr Object Reference"><link rel="next" href="rn05.html" title="Bpf Object Reference"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"></th></tr><tr><td width="20%" align="left"><a href="rn04.html">Prev</a> </td><th width="60%" align="center">Pkthdr Object Reference</th><td width="20%" align="right"> <a href="rn05.html">Next</a></td></tr></table><hr></div><div class="refentry"><h1 class="title"><a name="id2734727"></a>getts</h1><div class="refnamediv"><a name="id2734730"></a><h2>Name</h2>getts, getcaplen, getlen &#8212; Obtain packet header information</div><div class="refsynopsisdiv"><a name="id2796801"></a><h2>Synopsis</h2><div class="funcsynopsis" id="id2796804"><a name="id2796804"></a><p><code><code class="funcdef">(long, long) <b class="fsfunc">getts</b></code>();</code></p></div><div class="funcsynopsis" id="id2796826"><a name="id2796826"></a><p><code><code class="funcdef">long <b class="fsfunc">getcaplen</b></code>();</code></p></div><div class="funcsynopsis" id="id2796847"><a name="id2796847"></a><p><code><code class="funcdef">long <b class="fsfunc">getlen</b></code>();</code></p></div></div><div class="refsect1"><a name="id2796869"></a><h2><a name="id2796869"></a>DESCRIPTION</h2><p>
+	  <tt>getts</tt>, <tt>getcaplen</tt>
+	  and <tt>getlen</tt> return the timestamp,
+	  capture length and total length fields of the packet header,
+	  respectively.
+	</p><p>
+	  Timestamp is a tuple with two elements: the number of
+	  seconds since the Epoch, and the amount of microseconds past
+	  the current second. The capture length is the number of
+	  bytes of the packet that are available from the capture.
+	  Finally, total length gives the length of the packet, in
+	  bytes (which might be more than the number of bytes
+	  available from the capture, if the length of the packet is
+	  larger than the maximum number of bytes to capture).
+	</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a href="rn04.html">Prev</a> </td><td width="20%" align="center"><a href="pt01.html">Home</a></td><td width="40%" align="right"> <a href="rn05.html">Next</a></td></tr><tr><td width="40%" align="left">Pkthdr Object Reference </td><td width="20%" align="center"><a href="rn04.html">Up</a></td><td width="40%" align="right"> Bpf Object Reference</td></tr></table></div></body></html>
