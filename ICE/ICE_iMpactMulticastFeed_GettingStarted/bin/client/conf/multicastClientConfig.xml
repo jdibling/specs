@@ -1,0 +1,1302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	multicastClientConfig.xml file contains the configuration information for various
+	deployment environments. The TCP and Multicast Group addresses are pre-configured
+	so we can choose a configuration during the launch of the multicast client application
+	
+	Within the multicast tag, we have different multicast groups named as "ICE Futures US Agricultures" etc.,
+	Each of these groups, then, have information on the context for which the client might be interested in
+	subscribing to. These are under FullOrderDepth/PriceLevel tags. They, in turn, contain the live and
+	snapshot multicast group addresses.
+
+	Pre-defined Options Support
+		
+	For groups that have the isOptions flag set, the context can only be a PriceLevel
+	There is no full order depth for the pre-defined options markets
+	Also, the futures vs. options markets is mutually exclusive. We don't get to subscribe to both at the same time
+-->
+<multicastClientConfig>
+	<environment name="APITest EndexSpot">
+		<!-- TCP Connection Information -->
+		<tcp ip="63.247.113.77" port="3000"
+			userName="YourTestId"
+			password="YourTestPassword"/>
+
+		<!-- Multicast Groups Information -->
+		<multicast>
+			<group name="ICE Endex Spot">
+				<fullOrderDepth>
+					<live ip="233.156.208.157" port="20157"/>
+					<snapshot ip="233.156.208.156" port="20156"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.155" port="20155"/>
+					<snapshot ip="233.156.208.154" port="20154"/>
+				</priceLevel>
+			</group>	
+		</multicast>
+	</environment>		
+
+	<environment name="APITest">
+		<!-- TCP Connection Information -->
+		<tcp ip="63.247.113.163" port="3000"
+			userName="YourTestId"
+			password="YourTestPassword"/>
+
+		<!-- Multicast Groups Information -->
+		<multicast>
+			<group name="ICE Futures US Agricultures">
+				<fullOrderDepth>
+					<live ip="233.156.208.255" port="20255"/>
+					<snapshot ip="233.156.208.254" port="20254"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.253" port="20253"/>
+					<snapshot ip="233.156.208.252" port="20252"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures US Financials">
+				<fullOrderDepth>
+					<live ip="233.156.208.251" port="20251"/>
+					<snapshot ip="233.156.208.250" port="20250"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.249" port="20249"/>
+					<snapshot ip="233.156.208.248" port="20248"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Europe Non Oil">
+				<fullOrderDepth>
+					<live ip="233.156.208.247" port="20247"/>
+					<snapshot ip="233.156.208.246" port="20246"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.245" port="20245"/>
+					<snapshot ip="233.156.208.244" port="20244"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE OTC">
+				<fullOrderDepth>
+					<live ip="233.156.208.243" port="20243"/>
+					<snapshot ip="233.156.208.242" port="20242"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.241" port="20241"/>
+					<snapshot ip="233.156.208.240" port="20240"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Canada">
+				<fullOrderDepth>
+					<live ip="233.156.208.239" port="20239"/>
+					<snapshot ip="233.156.208.238" port="20238"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.237" port="20237"/>
+					<snapshot ip="233.156.208.236" port="20236"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE OTC FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.219" port="20219"/>
+					<snapshot ip="233.156.208.218" port="20218"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.217" port="20217"/>
+					<snapshot ip="233.156.208.216" port="20216"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures US Agricultures FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.215" port="20215"/>
+					<snapshot ip="233.156.208.214" port="20214"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.213" port="20213"/>
+					<snapshot ip="233.156.208.212" port="20212"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Options">
+				<priceLevel>
+					<live ip="233.156.208.195" port="20195"/>
+					<snapshot ip="233.156.208.194" port="20194"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Financials Options">
+				<priceLevel>
+					<live ip="233.156.208.193" port="20193"/>
+					<snapshot ip="233.156.208.192" port="20192"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Agricultures Options">
+				<priceLevel>
+					<live ip="233.156.208.191" port="20191"/>
+					<snapshot ip="233.156.208.190" port="20190"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Brent">
+				<fullOrderDepth>
+					<live ip="233.156.208.231" port="20231"/>
+					<snapshot ip="233.156.208.230" port="20230"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.229" port="20229"/>
+					<snapshot ip="233.156.208.228" port="20228"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures WTI">
+				<fullOrderDepth>
+					<live ip="233.156.208.227" port="20227"/>
+					<snapshot ip="233.156.208.226" port="20226"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.225" port="20225"/>
+					<snapshot ip="233.156.208.224" port="20224"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Europe Oil Others">
+				<fullOrderDepth>
+					<live ip="233.156.208.223" port="20223"/>
+					<snapshot ip="233.156.208.222" port="20222"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.221" port="20221"/>
+					<snapshot ip="233.156.208.220" port="20220"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Brent FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.207" port="20207"/>
+					<snapshot ip="233.156.208.206" port="20206"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.205" port="20205"/>
+					<snapshot ip="233.156.208.204" port="20204"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures WTI FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.203" port="20203"/>
+					<snapshot ip="233.156.208.202" port="20202"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.201" port="20201"/>
+					<snapshot ip="233.156.208.200" port="20200"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Europe Oil Others FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.199" port="20199"/>
+					<snapshot ip="233.156.208.198" port="20198"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.197" port="20197"/>
+					<snapshot ip="233.156.208.196" port="20196"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Non Oil FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.211" port="20211"/>
+					<snapshot ip="233.156.208.210" port="20210"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.209" port="20209"/>
+					<snapshot ip="233.156.208.208" port="20208"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Endex">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="20163"/>
+					<snapshot ip="233.156.208.232" port="20162"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="20161"/>
+					<snapshot ip="233.156.208.232" port="20160"/>
+				</priceLevel>
+			</group>
+						
+			<group name="ICE Futures Canada Options TOP10PL">
+				<priceLevel>
+					<live ip="233.156.208.232" port="20153"/>
+					<snapshot ip="233.156.208.232" port="20152"/>
+				</priceLevel>
+			</group>
+		
+			<group name="ICE Futures Europe Options TOP10PL">
+				<priceLevel>
+					<live ip="233.156.208.232" port="20149"/>
+					<snapshot ip="233.156.208.232" port="20148"/>
+				</priceLevel>
+			</group>
+			<group name="ICE Futures US Agricultures Options TOP10PL">
+				<priceLevel>
+					<live ip="233.156.208.232" port="20147"/>
+					<snapshot ip="233.156.208.232" port="20146"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures US Financials Options TOP10PL">
+				<priceLevel>
+					<live ip="233.156.208.232" port="20145"/>
+					<snapshot ip="233.156.208.232" port="20144"/>
+				</priceLevel>
+			</group>		
+			
+			<group name="ICE OTC Options TOP10PL">
+				<priceLevel>
+					<live ip="233.156.208.232" port="20143"/>
+					<snapshot ip="233.156.208.232" port="20142"/>
+				</priceLevel>
+			</group>
+
+		</multicast>
+
+	</environment>
+
+	<environment name="APITest LIFFE">
+		<!-- TCP Connection Information -->
+		<tcp ip="63.247.113.229" port="3000"
+			userName="YourTestId"
+			password="YourTestPassword"/>
+
+		<!-- Multicast Groups Information -->
+		<multicast>		
+			<group name="ICE Futures Europe Liffe STIRS">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21255"/>
+					<snapshot ip="233.156.208.232" port="21254"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21253"/>
+					<snapshot ip="233.156.208.232" port="21252"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Three Month Euro and Eonia">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21251"/>
+					<snapshot ip="233.156.208.232" port="21250"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21249"/>
+					<snapshot ip="233.156.208.232" port="21248"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Medium and Long Term IR">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21247"/>
+					<snapshot ip="233.156.208.232" port="21246"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21245"/>
+					<snapshot ip="233.156.208.232" port="21244"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Equity and Indices">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21243"/>
+					<snapshot ip="233.156.208.232" port="21242"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21241"/>
+					<snapshot ip="233.156.208.232" port="21240"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Agricultural">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21239"/>
+					<snapshot ip="233.156.208.232" port="21238"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21237"/>
+					<snapshot ip="233.156.208.232" port="21236"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe GCF and Eurodollar">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21235"/>
+					<snapshot ip="233.156.208.232" port="21234"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21233"/>
+					<snapshot ip="233.156.208.232" port="21232"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Liffe Metals">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21231"/>
+					<snapshot ip="233.156.208.232" port="21230"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21229"/>
+					<snapshot ip="233.156.208.232" port="21228"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Liffe Equity and Indices">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21227"/>
+					<snapshot ip="233.156.208.232" port="21226"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21225"/>
+					<snapshot ip="233.156.208.232" port="21224"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe STIRS FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21223"/>
+					<snapshot ip="233.156.208.232" port="21222"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21221"/>
+					<snapshot ip="233.156.208.232" port="21220"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Three Month Euro and Eonia FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21219"/>
+					<snapshot ip="233.156.208.232" port="21218"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21217"/>
+					<snapshot ip="233.156.208.232" port="21216"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Medium and Long Term IR FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21215"/>
+					<snapshot ip="233.156.208.232" port="21214"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21213"/>
+					<snapshot ip="233.156.208.232" port="21212"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Equity and Indices FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21211"/>
+					<snapshot ip="233.156.208.232" port="21210"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21209"/>
+					<snapshot ip="233.156.208.232" port="21208"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Agricultural FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21207"/>
+					<snapshot ip="233.156.208.232" port="21206"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21205"/>
+					<snapshot ip="233.156.208.232" port="21204"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe GCF and Eurodollar FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21203"/>
+					<snapshot ip="233.156.208.232" port="21202"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21201"/>
+					<snapshot ip="233.156.208.232" port="21200"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Liffe Metals FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21199"/>
+					<snapshot ip="233.156.208.232" port="21198"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21197"/>
+					<snapshot ip="233.156.208.232" port="21196"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Liffe Equity and Indices FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.232" port="21195"/>
+					<snapshot ip="233.156.208.232" port="21194"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.232" port="21193"/>
+					<snapshot ip="233.156.208.232" port="21192"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Options TOP10PL">
+				<priceLevel>
+					<live ip="233.156.208.232" port="21191"/>
+					<snapshot ip="233.156.208.232" port="21190"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Liffe Options TOB">
+				<priceLevel>
+					<live ip="233.156.208.232" port="21189"/>
+					<snapshot ip="233.156.208.232" port="21188"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Liffe Options TOP10PL">
+				<priceLevel>
+					<live ip="233.156.208.232" port="21187"/>
+					<snapshot ip="233.156.208.232" port="21186"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Liffe Options TOB">
+				<priceLevel>
+					<live ip="233.156.208.232" port="21185"/>
+					<snapshot ip="233.156.208.232" port="21184"/>
+				</priceLevel>
+			</group>
+			
+		</multicast>
+	</environment>
+	
+	<environment name="PerfTest">
+		<!-- TCP Connection Information -->
+		<tcp ip="63.247.113.214" port="3000"
+			userName="YourTestId"
+			password="YourTestPassword"/>
+
+		<multicast>
+			<group name="ICE Futures US Agricultures">
+				<fullOrderDepth>
+					<live ip="233.156.208.255" port="30255"/>
+					<snapshot ip="233.156.208.254" port="30254"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.253" port="30253"/>
+					<snapshot ip="233.156.208.252" port="30252"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures US Financials">
+				<fullOrderDepth>
+					<live ip="233.156.208.251" port="30251"/>
+					<snapshot ip="233.156.208.250" port="30250"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.249" port="30249"/>
+					<snapshot ip="233.156.208.248" port="30248"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Europe Non Oil">
+				<fullOrderDepth>
+					<live ip="233.156.208.247" port="30247"/>
+					<snapshot ip="233.156.208.246" port="30246"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.245" port="30245"/>
+					<snapshot ip="233.156.208.244" port="30244"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE OTC">
+				<fullOrderDepth>
+					<live ip="233.156.208.243" port="30243"/>
+					<snapshot ip="233.156.208.242" port="30242"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.241" port="30241"/>
+					<snapshot ip="233.156.208.240" port="30240"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Canada">
+				<fullOrderDepth>
+					<live ip="233.156.208.239" port="30239"/>
+					<snapshot ip="233.156.208.238" port="30238"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.237" port="30237"/>
+					<snapshot ip="233.156.208.236" port="30236"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Brent">
+				<fullOrderDepth>
+					<live ip="233.156.208.231" port="30231"/>
+					<snapshot ip="233.156.208.230" port="30230"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.229" port="30229"/>
+					<snapshot ip="233.156.208.228" port="30228"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures WTI">
+				<fullOrderDepth>
+					<live ip="233.156.208.227" port="30227"/>
+					<snapshot ip="233.156.208.226" port="30226"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.225" port="30225"/>
+					<snapshot ip="233.156.208.224" port="30224"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Europe Oil Others">
+				<fullOrderDepth>
+					<live ip="233.156.208.223" port="30223"/>
+					<snapshot ip="233.156.208.222" port="30222"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.221" port="30221"/>
+					<snapshot ip="233.156.208.220" port="30220"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE OTC FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.219" port="30219"/>
+					<snapshot ip="233.156.208.218" port="30218"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.217" port="30217"/>
+					<snapshot ip="233.156.208.216" port="30216"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Brent FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.207" port="30207"/>
+					<snapshot ip="233.156.208.206" port="30206"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.205" port="30205"/>
+					<snapshot ip="233.156.208.204" port="30204"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures WTI FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.203" port="30203"/>
+					<snapshot ip="233.156.208.202" port="30202"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.201" port="30201"/>
+					<snapshot ip="233.156.208.200" port="30200"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures Europe Oil Others FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.199" port="30199"/>
+					<snapshot ip="233.156.208.198" port="30198"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.197" port="30197"/>
+					<snapshot ip="233.156.208.196" port="30196"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures US Energy">
+				<fullOrderDepth>
+					<live ip="233.156.208.179" port="30179"/>
+					<snapshot ip="233.156.208.178" port="30178"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.177" port="30177"/>
+					<snapshot ip="233.156.208.176" port="30176"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures US Energy FI">
+				<fullOrderDepth>
+					<live ip="233.156.208.175" port="30175"/>
+					<snapshot ip="233.156.208.174" port="30174"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.173" port="30173"/>
+					<snapshot ip="233.156.208.172" port="30172"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe S2F Energy">
+				<fullOrderDepth>
+					<live ip="233.156.208.171" port="30171"/>
+					<snapshot ip="233.156.208.170" port="30170"/>
+				</fullOrderDepth>
+				<priceLevel>
+					<live ip="233.156.208.169" port="30169"/>
+					<snapshot ip="233.156.208.168" port="30168"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures Europe Options">
+				<priceLevel>
+					<live ip="233.156.208.195" port="30195"/>
+					<snapshot ip="233.156.208.194" port="30194"/>
+				</priceLevel>
+			</group>
+
+			<group name="ICE Futures US Financials Options">
+				<priceLevel>
+					<live ip="233.156.208.193" port="30193"/>
+					<snapshot ip="233.156.208.192" port="30192"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Agricultures Options">
+				<priceLevel>
+					<live ip="233.156.208.191" port="30191"/>
+					<snapshot ip="233.156.208.190" port="30190"/>
+				</priceLevel>
+			</group>
+			
+			<group name="ICE Futures US Energy Options">
+				<priceLevel>
+					<live ip="233.156.208.187" port="30187"/>
+					<snapshot ip="233.156.208.186" port="30186"/>
+				</priceLevel>
+			</group>
+			
+		</multicast>
+		
+	</environment>
+
+	<!-- Parameters -->
+	<parameters>
+		<!--
+			Sequence Problem Action (optional). Values: shutdown (default), restart
+		<sequenceProblemAction>shutdown</sequenceProblemAction>
+		 -->
+		<!--
+			Multicast Network Interface (optional).
+			If not set, the default interface will be used by the network library
+		<multicastNetworkInterface>127.0.0.1</multicastNetworkInterface>
+		 -->
+		<!--
+			Multicast Inactivity Threshold in milliseconds (optional). If not set, the default=0 (infinite)
+		 -->
+		<multicastInactivityThreshold>30000</multicastInactivityThreshold>
+		<!--
+			Crossed Book Detection (optional). If present, enables Crossed Book Detection.
+			Optionally, Delayed alert could be enabled for certain market types such as OTC and Crack
+		<detectCrossedBook>
+			<delayedAlert>
+				<marketTypes>
+					<marketType code="0" />
+					<marketType code="1" />
+					<marketType code="2" />
+					<marketType code="6" />
+				</marketTypes>
+				<delayedAlertThreshold>120000</delayedAlertThreshold>
+				<delayedAlertMonitoringInterval>1000</delayedAlertMonitoringInterval>
+			</delayedAlert>
+		</detectCrossedBook>
+		-->
+		
+		<!--    System Text Message Window Display Location: x_pos|y_pos
+		<systemTextMsgLocation>0|0</systemTextMsgLocation>
+		-->
+	</parameters>
+	
+	<!--
+		List of all the multicast groups
+		Certain multicast groups are marked as Options. They support only price level contexts.
+	-->
+	<multicastGroups>
+		<multicastGroup name="ICE OTC"/>
+		<multicastGroup name="ICE OTC FI"/>	
+		<multicastGroup name="ICE Futures Europe Non Oil"/>
+		<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		<multicastGroup name="ICE Futures US Agricultures"/>
+		<multicastGroup name="ICE Futures US Financials"/>
+		<multicastGroup name="ICE Futures Canada"/>
+		<multicastGroup name="ICE Futures US Agricultures FI"/>
+		<multicastGroup name="ICE Futures Brent"/>
+		<multicastGroup name="ICE Futures WTI"/>
+		<multicastGroup name="ICE Futures Europe Oil Others"/>
+		<multicastGroup name="ICE Futures Brent FI"/>
+		<multicastGroup name="ICE Futures WTI FI"/>
+		<multicastGroup name="ICE Futures Europe Oil Others FI"/>	
+		<multicastGroup name="ICE Endex"/>	
+		<multicastGroup name="ICE Endex Spot"/>
+		<multicastGroup name="ICE Futures Europe Liffe STIRS"/>
+		<multicastGroup name="ICE Futures Europe Liffe Three Month Euro and Eonia"/>
+		<multicastGroup name="ICE Futures Europe Liffe Medium and Long Term IR"/>
+		<multicastGroup name="ICE Futures Europe Liffe Equity and Indices"/>
+		<multicastGroup name="ICE Futures Europe Liffe Agricultural"/>
+		<multicastGroup name="ICE Futures Europe Liffe GCF and Eurodollar"/>
+		<multicastGroup name="ICE Futures US Liffe Metals"/>
+		<multicastGroup name="ICE Futures US Liffe Equity and Indices"/>
+		<multicastGroup name="ICE Futures Europe Liffe STIRS FI"/>
+		<multicastGroup name="ICE Futures Europe Liffe Three Month Euro and Eonia FI"/>
+		<multicastGroup name="ICE Futures Europe Liffe Medium and Long Term IR FI"/>
+		<multicastGroup name="ICE Futures Europe Liffe Equity and Indices FI"/>
+		<multicastGroup name="ICE Futures Europe Liffe Agricultural FI"/>
+		<multicastGroup name="ICE Futures Europe Liffe GCF and Eurodollar FI"/>
+		<multicastGroup name="ICE Futures US Liffe Metals FI"/>
+		<multicastGroup name="ICE Futures US Liffe Equity and Indices FI"/>				
+		<multicastGroup name="ICE Futures Europe Options" isOptions="true"/>
+		<multicastGroup name="ICE Futures US Agricultures Options" isOptions="true"/>
+		<multicastGroup name="ICE Futures US Financials Options" isOptions="true"/>
+		<multicastGroup name="ICE Futures US Energy Options" isOptions="true"/>
+		<multicastGroup name="ICE Futures Canada Options" isOptions="true"/>
+		<multicastGroup name="ICE Futures Europe Options TOP10PL" isOptions="true"/>
+		<multicastGroup name="ICE Futures US Agricultures Options TOP10PL" isOptions="true"/>
+		<multicastGroup name="ICE Futures US Financials Options TOP10PL" isOptions="true"/>
+		<multicastGroup name="ICE OTC Options TOP10PL" isOptions="true"/>
+		<multicastGroup name="ICE Futures Canada Options TOP10PL" isOptions="true"/>
+		<multicastGroup name="ICE Futures Europe Liffe Options TOP10PL" isOptions="true"/>
+		<multicastGroup name="ICE Futures Europe Liffe Options TOB" isOptions="true"/>
+		<multicastGroup name="ICE Futures US Liffe Options TOP10PL" isOptions="true"/>
+		<multicastGroup name="ICE Futures US Liffe Options TOB" isOptions="true"/>				
+	</multicastGroups>
+
+	<!--
+		List of all market types with their corresponding multicast groups
+		The multicast group name must match what has been specified in the multicast tag
+
+		Typically, a market type belongs to a single multicast group
+		In the case of options, a market type can belong to both a futures group and an options group
+
+		Refer to the spec document, Section Appendix C: Supported Market Types
+	-->
+	<allMarketTypes>
+		<marketType code="0" name="Financial Gas">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC FI"/>
+			<multicastGroup name="ICE OTC Options"/>
+			<multicastGroup name="ICE OTC Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="1" name="Financial Power">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC FI"/>
+			<multicastGroup name="ICE OTC Options"/>
+			<multicastGroup name="ICE OTC Options Depth"/>
+		</marketType>
+
+		<marketType code="2" name="Oil">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC FI"/>
+			<multicastGroup name="ICE OTC Options"/>
+			<multicastGroup name="ICE OTC Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="3" name="IPE Natural Gas Futures">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="4" name="IPE Gas Oil Futures">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="5" name="IPE Brent Futures">
+			<multicastGroup name="ICE Futures Brent"/>
+			<multicastGroup name="ICE Futures Brent FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="6" name="IPE Gas Oil Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="7" name="IPE UK Electricity Futures Peak">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="8" name="IPE UK Electricity Futures Base">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="9" name="ICE WTI Crude Futures">
+			<multicastGroup name="ICE Futures WTI"/>
+			<multicastGroup name="ICE Futures WTI FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="10" name="gC Newcastle Coal Futures">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+		
+		<marketType code="11" name="ICE Brent-WTI Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="12" name="IPE-ECX European Emissions">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="13" name="ICE Heating Oil Futures">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="14" name="ICE Heating Oil/WTI Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="15" name="ICE NYH (RBOB) Gasoline Futures">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="16" name="ICE NYH (RBOB) Gasoline/WTI Futures Crack">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="17" name="ICE Rotterdam Coal Futures">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="18" name="ICE Richards Bay Coal Futures">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="19" name="ICE Rotterdam/Richards Bay Coal Futures Spread">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="20" name="Cocoa">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="21" name="Coffee C">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="22" name="Cotton No 2">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="23" name="FCOJ A">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="24" name="Sugar No 11">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="25" name="Heat Rate Spread">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC FI"/>
+		</marketType>
+
+		<marketType code="26" name="US Dollar Index">
+			<multicastGroup name="ICE Futures US Financials"/>
+			<multicastGroup name="ICE Futures US Financials Options"/>
+			<multicastGroup name="ICE Futures US Financials Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="27" name="ICE Heating Oil/Gas Oil Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="28" name="Russell Indices">
+			<multicastGroup name="ICE Futures US Financials"/>
+			<multicastGroup name="ICE Futures US Financials Options"/>
+			<multicastGroup name="ICE Futures US Financials Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="29" name="Commodity Index Futures">
+			<multicastGroup name="ICE Futures US Financials"/>
+			<multicastGroup name="ICE Futures US Financials Options"/>
+			<multicastGroup name="ICE Futures US Financials Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="31" name="ICE Middle East Sour Crude Futures">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="32" name="ICE Brent/Middle East Crude Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="33" name="ICE WTI/Middle East Crude Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="36" name="Canadian Oilseeds">
+			<multicastGroup name="ICE Futures Canada"/>
+			<multicastGroup name="ICE Futures Canada Options"/>	
+			<multicastGroup name="ICE Futures Canada Options TOP10PL"/>	
+		</marketType>
+
+		<marketType code="37" name="Canadian Grains">
+			<multicastGroup name="ICE Futures Canada"/>
+			<multicastGroup name="ICE Futures Canada Options"/>
+			<multicastGroup name="ICE Futures Canada Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="38" name="ICE ECX CER Futures">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+			<multicastGroup name="ICE Futures Europe Options"/>
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="39" name="Foreign Exchange">
+			<multicastGroup name="ICE Futures US Financials"/>
+			<multicastGroup name="ICE Futures US Financials Options"/>
+			<multicastGroup name="ICE Futures US Financials Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="40" name="Financial Index Data">
+			<multicastGroup name="ICE Futures US Financials"/>
+			<multicastGroup name="ICE Futures US Financials Options"/>
+			<multicastGroup name="ICE Futures US Financials Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="41" name="Sugar No 16">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="42" name="ECX EUA/CER Futures Spread">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="44" name="Henry Hub">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC FI"/>
+			<multicastGroup name="ICE OTC Options"/>
+			<multicastGroup name="ICE OTC Options TOP10PL"/>
+		</marketType>
+
+		<marketType code="48" name="Dutch TTF Gas Futures">
+			<multicastGroup name="ICE Endex"/>
+		</marketType>			
+
+		<marketType code="49" name="ECX ERU Futures">
+			<multicastGroup name="ICE Futures Europe Options"/>		
+			<multicastGroup name="ICE Futures Europe Options TOP10PL"/>		
+		</marketType>
+
+		<marketType code="50" name="German Natural Gas Futures">
+			<multicastGroup name="ICE Endex"/>
+		</marketType>	
+
+		<marketType code="51" name="European Gas Spreads">
+			<multicastGroup name="ICE Endex"/>
+		</marketType>	
+		
+		<marketType code="53" name="Canadian Financial Gas">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC Options"/>
+			<multicastGroup name="ICE OTC Options TOP10PL"/>
+		</marketType>
+		
+		<marketType code="58" name="Heating Oil/Brent Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="59" name="NYH (RBOB) Gasoline/Brent Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="66" name="NYH (RBOB) Gasoline/Heating Oil Spread">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>			
+
+		<marketType code="69" name="Physical Environmental">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC Options"/>
+			<multicastGroup name="ICE OTC Options TOP10PL"/>
+		</marketType>
+		
+		<marketType code="70" name="Heating Oil/LS Gasoil Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="71" name="LS Gasoil/Brent Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>		
+
+		<marketType code="72" name="NYH (RBOB) Gasoline/LS Gasoil Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="73" name="NYH (RBOB) Gasoline/Gasoil Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="74" name="LS Gasoil/Gasoil Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+		
+		<marketType code="75" name="ECX ERU/CER Futures Spread">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+		
+		<marketType code="76" name="ECX ERU/EUA Futures Spread">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+		
+		<marketType code="77" name="Gasoil/Brent NX Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+		
+		<marketType code="78" name="LS Gasoil/Brent NX Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+		
+		<marketType code="79" name="Brent NX/WTI Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+		
+		<marketType code="80" name="Brent NX/Brent Futures Spread">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>	
+		
+		<marketType code="81" name="NYH (RBOB) Gasoline/Brent NX Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+		
+		<marketType code="82" name="Heating Oil/Brent NX Futures Crack">
+			<multicastGroup name="ICE Futures Europe Oil Others"/>
+			<multicastGroup name="ICE Futures Europe Oil Others FI"/>
+		</marketType>
+
+		<marketType code="87" name="Oats">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+		
+		<marketType code="88" name="Rice">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+		
+		<marketType code="89" name="Soybean">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+		
+		<marketType code="90" name="Wheat">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+		
+		<marketType code="91" name="Corn">
+			<multicastGroup name="ICE Futures US Agricultures"/>
+			<multicastGroup name="ICE Futures US Agricultures FI"/>
+			<multicastGroup name="ICE Futures US Agricultures Options"/>
+			<multicastGroup name="ICE Futures US Agricultures Options TOP10PL"/>
+		</marketType>
+		
+		<marketType code="92" name="ECX EUA EIB Auction">
+			<multicastGroup name="ICE Futures Europe Non Oil"/>
+			<multicastGroup name="ICE Futures Europe Non Oil FI"/>
+		</marketType>
+
+		<marketType code="98" name="Belgian Power Futures">
+			<multicastGroup name="ICE Endex"/>
+		</marketType>	
+
+		<marketType code="99" name="Dutch Power Futures">
+			<multicastGroup name="ICE Endex"/>
+		</marketType>	
+		
+		<marketType code="111" name="European Power Spreads">
+			<multicastGroup name="ICE Endex"/>
+		</marketType>
+		
+		<marketType code="113" name="Belgian ZTP Gas Spot">
+			<multicastGroup name="ICE Endex Spot"/>
+		</marketType>
+
+		<marketType code="114" name="Dutch TTF Gas Spot">
+			<multicastGroup name="ICE Endex Spot"/>
+		</marketType>
+
+		<marketType code="115" name="Dutch TTF Gas Storage">
+			<multicastGroup name="ICE Endex Spot"/>
+		</marketType>
+
+		<marketType code="115" name="European Gas Spot Spreads">
+			<multicastGroup name="ICE Endex Spot"/>
+		</marketType>
+
+		<marketType code="200" name="LIFFE STIRS">
+			<multicastGroup name="ICE Futures Europe Liffe STIRS"/>
+			<multicastGroup name="ICE Futures Europe Liffe STIRS FI"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOB"/>
+		</marketType>
+
+		<marketType code="201" name="LIFFE Indices">
+			<multicastGroup name="ICE Futures Europe Liffe Equity and Indices"/>
+			<multicastGroup name="ICE Futures Europe Liffe Equity and Indices FI"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOB"/>
+		</marketType>		
+		
+		<marketType code="202" name="LIFFE Bonds">
+			<multicastGroup name="ICE Futures Europe Liffe Medium and Long Term IR"/>
+			<multicastGroup name="ICE Futures Europe Liffe Medium and Long Term IR FI"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOB"/>
+		</marketType>
+		
+		<marketType code="203" name="LIFFE Swapnotes">
+			<multicastGroup name="ICE Futures Europe Liffe Medium and Long Term IR"/>
+			<multicastGroup name="ICE Futures Europe Liffe Medium and Long Term IR FI"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOB"/>
+		</marketType>
+		
+		<marketType code="204" name="LIFFE Equity Derivatives">
+			<multicastGroup name="ICE Futures Europe Liffe Equity and Indices"/>
+			<multicastGroup name="ICE Futures Europe Liffe Equity and Indices FI"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOB"/>
+		</marketType>
+		
+		<marketType code="205" name="LIFFE Commodities">
+			<multicastGroup name="ICE Futures Europe Liffe Agricultural"/>
+			<multicastGroup name="ICE Futures Europe Liffe Agricultural FI"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures EUROPE Liffe Options TOB"/>
+		</marketType>
+		
+		<marketType code="206" name="LIFFE Metals">
+			<multicastGroup name="ICE Futures US Liffe Metals"/>
+			<multicastGroup name="ICE Futures US Liffe Metals FI"/>
+			<multicastGroup name="ICE Futures US Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures US Liffe Options TOB"/>			
+		</marketType>
+		
+		<marketType code="207" name="LIFFE IFUS Equity Indices">
+			<multicastGroup name="ICE Futures US Liffe Equity and Indices"/>
+			<multicastGroup name="ICE Futures US Liffe Equity and Indices FI"/>
+			<multicastGroup name="ICE Futures US Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures US Liffe Options TOB"/>
+		</marketType>
+		
+		<marketType code="208" name="LIFFE GCF Repo">
+			<multicastGroup name="ICE Futures Europe Liffe GCF and Eurodollar"/>
+			<multicastGroup name="ICE Futures Europe Liffe GCF and Eurodollar FI"/>
+			<multicastGroup name="ICE Futures Europe Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures Europe Liffe Options TOB"/>
+		</marketType>
+		
+		<marketType code="209" name="LIFFE Three Month Euro and Eonia">
+			<multicastGroup name="ICE Futures Europe Liffe Three Month Euro and Eonia"/>
+			<multicastGroup name="ICE Futures Europe Liffe Three Month Euro and Eonia FI"/>
+			<multicastGroup name="ICE Futures Europe Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures Europe Liffe Options TOB"/>
+		</marketType>
+
+		<marketType code="210" name="LIFFE Eurodollar">
+			<multicastGroup name="ICE Futures Europe Liffe GCF and Eurodollar"/>
+			<multicastGroup name="ICE Futures Europe Liffe GCF and Eurodollar FI"/>
+			<multicastGroup name="ICE Futures Europe Liffe Options TOP10PL"/>
+			<multicastGroup name="ICE Futures Europe Liffe Options TOB"/>
+		</marketType>		
+		
+		<marketType code="317" name="Financial NGL">
+			<multicastGroup name="ICE OTC"/>
+			<multicastGroup name="ICE OTC Options"/>
+			<multicastGroup name="ICE OTC Options TOP10PL"/>
+		</marketType>		
+		
+	</allMarketTypes>
+
+</multicastClientConfig>
+

@@ -1,0 +1,15 @@
+call ../common.bat
+
+set MCADDRESSES=233.156.208.251:20005,233.156.208.250:20006
+
+set APPARGS=-Dsilent=true -Dmulticast.inactivity.threshold=20000
+set APPARGS=%APPARGS% -Dmulticast.group.addresses=%MCADDRESSES%
+
+REM If you want to specify a specific network interface, please
+REM uncomment the following line and specify the appliable interface name
+REM
+REM set APPARGS=%APPARGS% -Dmulticast.network.interface=127.0.0.1
+
+java %JVMARGS% -classpath %CLASSPATH% %APPARGS% com.theice.mdf.client.multicast.monitor.MulticastMonitor
+
+pause

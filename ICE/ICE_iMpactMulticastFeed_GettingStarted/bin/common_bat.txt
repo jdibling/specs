@@ -1,0 +1,3 @@
+set PATH=.\lib;%PATH%
+set INSTALL_DIR=..
+set CLASSPATH=.;.\conf;%INSTALL_DIR%\lib\*

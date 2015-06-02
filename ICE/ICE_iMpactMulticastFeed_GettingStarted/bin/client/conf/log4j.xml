@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!--  Console Appender -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+	<layout class="org.apache.log4j.SimpleLayout"/>
+	</appender>
+
+	<!--  File Appender(s) -->
+	<appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="./logs/mdfclient.log"/>      
+		<param name="maxBackupIndex" value="5"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t]: %m%n"/>
+		</layout>
+	</appender>
+
+	<!--  Error File Appender(s) -->
+	<appender name="errorFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="./logs/mdfclienterrors.log"/>      
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t]: %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender>
+
+	<logger name="com.theice.mdf.client" additivity="false">
+		<level value="debug"/>
+		<appender-ref ref="fileAppender"/>
+		<appender-ref ref="errorFileAppender"/>
+	</logger>      
+
+	<root>
+		<priority value ="info"/>
+		<appender-ref ref="console"/>
+	</root>
+
+</log4j:configuration>
+

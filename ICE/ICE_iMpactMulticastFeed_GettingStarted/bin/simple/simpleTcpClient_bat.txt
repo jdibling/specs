@@ -1,0 +1,4 @@
+call ../common.bat
+
+java %JVMARGS% -classpath %CLASSPATH% -Dconfig=conf/simpleTcpClient.properties com.theice.mdf.client.examples.SimpleClient
+

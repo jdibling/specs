@@ -1,0 +1,16 @@
+REM
+REM Usage
+REM
+REM		The simple multicast client accepts the following system parameters
+REM
+REM		multicast.group.address
+REM		multicast.port
+REM		multicast.network.interface - the specific network interface on which to listen for multicast datagrams
+REM
+REM
+
+call ../common.bat
+
+java %JVMARGS% -classpath %CLASSPATH% -Dmulticast.group.address=233.156.208.251 -Dmulticast.port=20005 com.theice.mdf.client.multicast.SimpleMulticastClient
+
+pause

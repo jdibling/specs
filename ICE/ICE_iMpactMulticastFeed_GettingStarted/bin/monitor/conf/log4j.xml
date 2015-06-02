@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!--  Console Appender -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t]: %m%n"/>
+		</layout>
+	</appender>
+	
+	   <appender name="Mail-Error" class="org.apache.log4j.net.SMTPAppender">
+	     <param name="BufferSize" value="1"/>
+	     <param name="From" value=""/>
+	     <param name="To" value=""/>
+	     <param name="SMTPHost" value=""/>
+	     <param name="Subject" value=""/>
+	           <layout class="org.apache.log4j.PatternLayout">
+	        <!-- The default pattern: Date Priority [Category] Message\n -->
+	        <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+	      </layout>
+	   </appender>
+
+
+	<!--  File Appender(s) -->
+	<appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+      <param name="file" value="./logs/MulticastChannelClient.log"/>      
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t]: %m%n"/>
+      </layout>
+	</appender>
+
+	<!--  Error File Appender(s) -->
+	<appender name="errorFileAppender" class="org.apache.log4j.RollingFileAppender">
+      <param name="file" value="./logs/MulticastErrors.log"/>      
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t]: %m%n"/>
+      </layout>
+      <filter class="org.apache.log4j.varia.LevelRangeFilter">
+         <param name="LevelMin" value="ERROR" />
+         <param name="LevelMax" value="FATAL" />
+      </filter>
+	</appender>
+	
+	
+	   <category name="com.theice.mdf.client.util.MailThrottler">
+	     <priority value="ERROR"/>
+	     <appender-ref ref="Mail-Error"/>
+	   </category>
+
+
+   <logger name="com.theice.mdf.client.multicast.monitor" additivity="false">
+      <level value="debug"/>
+      <appender-ref ref="fileAppender"/>
+      <appender-ref ref="errorFileAppender"/>
+   </logger>      
+
+	<root>
+		<priority value ="debug"/>
+		<appender-ref ref="console"/>
+	</root>
+
+</log4j:configuration>
+
